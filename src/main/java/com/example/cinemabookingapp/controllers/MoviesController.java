@@ -19,9 +19,9 @@ public class MoviesController {
     }
 
     @GetMapping
-    @RequestMapping("{id}")
-    public Movie getMovie(@PathVariable Long movies_id) {
-        return moviesRepository.getReferenceById(movies_id);
+    @RequestMapping("{movie_id}")
+    public Movie getMovie(@PathVariable Long movie_id) {
+        return moviesRepository.getReferenceById(movie_id);
     }
 
     @PostMapping
@@ -29,17 +29,16 @@ public class MoviesController {
         return moviesRepository.saveAndFlush(movie);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public Movie updateMovie(@PathVariable Long movies_id, @RequestBody Movie movie) {
-        Movie existingMovie = moviesRepository.getReferenceById(movies_id);
+    @RequestMapping(value = "{movie_id}", method = RequestMethod.PUT)
+    public Movie updateMovie(@PathVariable Long movie_id, @RequestBody Movie movie) {
+        Movie existingMovie = moviesRepository.getReferenceById(movie_id);
         BeanUtils.copyProperties(movie, existingMovie, "movie_id");
         return moviesRepository.saveAndFlush(existingMovie);
     }
 
-    @DeleteMapping
-    @RequestMapping("{id}")
-    public void deleteMovie(@PathVariable Long movies_id) {
-        moviesRepository.deleteById(movies_id);
+    @DeleteMapping("{movie_id}")
+    public void deleteMovie(@PathVariable Long movie_id) {
+        moviesRepository.deleteById(movie_id);
     }
 }
 

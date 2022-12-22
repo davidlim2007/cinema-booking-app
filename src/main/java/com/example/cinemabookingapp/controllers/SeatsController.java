@@ -19,20 +19,19 @@ public class SeatsController {
     }
 
     @GetMapping
-    @RequestMapping("{id}")
+    @RequestMapping("{seat_id}")
     public Seat getSeat(@PathVariable Long seat_id) {
         return seatsRepository.getReferenceById(seat_id);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{seat_id}", method = RequestMethod.PUT)
     public Seat updateSeat(@PathVariable Long seat_id, @RequestBody Seat seat) {
         Seat existingSeat = seatsRepository.getReferenceById(seat_id);
         BeanUtils.copyProperties(seat, existingSeat, "seat_id");
         return seatsRepository.saveAndFlush(existingSeat);
     }
 
-    @DeleteMapping
-    @RequestMapping("{id}")
+    @DeleteMapping("{seat_id}")
     public void deleteSeat(@PathVariable Long seat_id) {
         seatsRepository.deleteById(seat_id);
     }

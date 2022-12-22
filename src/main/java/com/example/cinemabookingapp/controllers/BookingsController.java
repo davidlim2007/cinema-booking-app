@@ -19,20 +19,19 @@ public class BookingsController {
     }
 
     @GetMapping
-    @RequestMapping("{id}")
+    @RequestMapping("{booking_id}")
     public Booking getBooking(@PathVariable Long booking_id) {
         return bookingsRepository.getReferenceById(booking_id);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{booking_id}", method = RequestMethod.PUT)
     public Booking updateBooking(@PathVariable Long booking_id, @RequestBody Booking booking) {
         Booking existingBooking = bookingsRepository.getReferenceById(booking_id);
         BeanUtils.copyProperties(booking, existingBooking, "booking_id");
         return bookingsRepository.saveAndFlush(existingBooking);
     }
 
-    @DeleteMapping
-    @RequestMapping("{id}")
+    @DeleteMapping("{booking_id}")
     public void deleteBooking(@PathVariable Long booking_id) {
         bookingsRepository.deleteById(booking_id);
     }
