@@ -1,5 +1,6 @@
 package com.example.cinemabookingapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -20,16 +21,18 @@ public class Booking {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "movie_movie_id")
+    @JoinColumn(name = "movie_id")
+    @JsonIgnore
     private Movie movie;
 
     @ManyToMany
     @JoinTable
     (
-        name = "booking_seats",
+        name = "booking_seat",
         joinColumns = @JoinColumn(name = "booking_id"),
         inverseJoinColumns = @JoinColumn(name = "seat_id")
     )
+    @JsonIgnore
     private List<Seat> seats;
 
     public List<Seat> getSeats() {
