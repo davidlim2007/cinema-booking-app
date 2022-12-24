@@ -25,7 +25,6 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
-    @JsonIgnore
     private Movie movie;
 
     @ManyToMany
@@ -35,7 +34,6 @@ public class Booking {
         joinColumns = @JoinColumn(name = "booking_id"),
         inverseJoinColumns = @JoinColumn(name = "seat_id")
     )
-    @JsonIgnore
     private List<Seat> seats;
 
     public List<Seat> getSeats() {
