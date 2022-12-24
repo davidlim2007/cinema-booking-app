@@ -24,6 +24,11 @@ public class SeatsController {
         return seatsRepository.getReferenceById(seat_id);
     }
 
+    @PostMapping
+    public Seat addSeat(@RequestBody final Seat seat) {
+        return seatsRepository.saveAndFlush(seat);
+    }
+
     @RequestMapping(value = "{seat_id}", method = RequestMethod.PUT)
     public Seat updateSeat(@PathVariable Long seat_id, @RequestBody Seat seat) {
         Seat existingSeat = seatsRepository.getReferenceById(seat_id);

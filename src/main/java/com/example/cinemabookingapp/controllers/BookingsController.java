@@ -24,6 +24,11 @@ public class BookingsController {
         return bookingsRepository.getReferenceById(booking_id);
     }
 
+    @PostMapping
+    public Booking addBooking(@RequestBody final Booking booking) {
+        return bookingsRepository.saveAndFlush(booking);
+    }
+
     @RequestMapping(value = "{booking_id}", method = RequestMethod.PUT)
     public Booking updateBooking(@PathVariable Long booking_id, @RequestBody Booking booking) {
         Booking existingBooking = bookingsRepository.getReferenceById(booking_id);

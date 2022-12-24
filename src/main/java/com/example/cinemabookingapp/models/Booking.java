@@ -1,5 +1,6 @@
 package com.example.cinemabookingapp.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -16,6 +17,8 @@ public class Booking {
     private Long booking_id;
     private int hall_no;
     private String name;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date datetime;
     private int no_of_seats;
     private double price;
