@@ -40,5 +40,10 @@ public class MoviesController {
     public void deleteMovie(@PathVariable Long movie_id) {
         moviesRepository.deleteById(movie_id);
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET, params = "name")
+    public List<Movie> getMoviesWithNameContains(@RequestParam("name") String name) {
+        return moviesRepository.findByNameContains(name);
+    }
 }
 

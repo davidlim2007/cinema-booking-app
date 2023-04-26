@@ -40,4 +40,10 @@ public class BookingsController {
     public void deleteBooking(@PathVariable Long booking_id) {
         bookingsRepository.deleteById(booking_id);
     }
+
+    @GetMapping
+    @RequestMapping("movie={movie_id}")
+    public List<Booking> getBookingsWithMovie(@PathVariable Long movie_id) {
+        return bookingsRepository.getBookingsWithMovie(movie_id);
+    }
 }

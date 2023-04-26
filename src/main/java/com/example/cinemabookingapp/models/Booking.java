@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(name = "booking")
+@NamedQuery(
+        name = "Booking.getBookingsWithMovie",
+        query = "select b from booking b where b.movie.movie_id = :movie_id"
+)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Booking {
 
